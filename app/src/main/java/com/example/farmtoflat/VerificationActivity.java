@@ -1,6 +1,10 @@
 package com.example.farmtoflat;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +22,8 @@ public class VerificationActivity extends AppCompatActivity {
     //private Spinner spinner;
     private EditText editText;
     private Button otp;
+    private ConstraintLayout parentlayout;
+   // parentlayout = getActivity().findViewById(R.id.activity_verification)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,12 @@ public class VerificationActivity extends AppCompatActivity {
             }
         });
     }
+//    private void setFragment(Fragment fragment){
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        FragmentTransaction.replace(parentlayout.getId(), fragment);
+//        FragmentTransaction.commit();
+//    }
 
     @Override
     protected void onStart() {
@@ -56,8 +68,9 @@ public class VerificationActivity extends AppCompatActivity {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
             startActivity(intent);
+
+//            setFragment(new )
         }
     }
 }

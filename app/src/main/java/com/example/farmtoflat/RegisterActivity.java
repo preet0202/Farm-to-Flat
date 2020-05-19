@@ -133,7 +133,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                     });
 
 
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this,MainActivity.class);
                     //intent.putExtra("phonenumber", phonenumber);
                     startActivity(intent);
 
