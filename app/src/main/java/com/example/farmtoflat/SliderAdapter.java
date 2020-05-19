@@ -3,6 +3,7 @@ package com.example.farmtoflat;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
+
+import com.google.api.LogDescriptor;
 
 import java.util.List;
 
@@ -21,7 +24,6 @@ public class SliderAdapter extends PagerAdapter {
     public SliderAdapter(List<SliderModel> sliderModelList) {
         mSliderModelList = sliderModelList;
     }
-
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {

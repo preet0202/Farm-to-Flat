@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,6 +37,14 @@ public class HomeFragment extends Fragment {
     final private long DELAY_TIME = 3000;
     final private long PERIOD_TIME = 3000;
     /// banner slider
+
+    ///Horizontal product 1
+    private TextView horizontalLayoutTitle1;
+    private Button horizontalviewAllButton1;
+    private RecyclerView horizontalRecyclerView1;
+
+    ///Horizontal product 1
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,26 +106,49 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                    if(state == ViewPager.SCROLL_STATE_IDLE){
-                        pageLooper();
-                    }
+                if(state == ViewPager.SCROLL_STATE_IDLE){
+                    pageLooper();
+                }
             }
         };
         bannerSliderViewPager.addOnPageChangeListener(onPageChangeListener);
 
         startbannerSlideShow();
         bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
-             @Override
-             public boolean onTouch(View view, MotionEvent motionEvent) {
-                 pageLooper();
-                 stopbannerSlideShow();
-                 if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-                     startbannerSlideShow();
-                 }
-                 return false;
-             }
-         });
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                pageLooper();
+                stopbannerSlideShow();
+                if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    startbannerSlideShow();
+                }
+                return false;
+            }
+        });
         //// Banner Slider
+
+        ///Horizontal product 1
+        horizontalLayoutTitle1 = view.findViewById(R.id.horizontal_scroll_layout1_title);
+        horizontalviewAllButton1 =view.findViewById(R.id.horizontal_scroll_layout1_view_all_button);
+        horizontalRecyclerView1 = view.findViewById(R.id.horizontal_scroll_layout1_recylerview);
+
+        List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays = new ArrayList<>();
+
+        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1,"Carrot","10Kg","Rs. 200/-"));
+        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_,"Potato","10Kg","Rs. 100/-"));
+        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3,"Ladyfinger","10Kg","Rs. 300/-"));
+        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4,"Tomato","10Kg","Rs. 200/-"));
+        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5,"Shimla Mirch","10Kg","Rs. 500/-"));
+        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6,"Chilli","10Kg","Rs. 400/-"));
+
+        HorizontalProductScrollAdapter_today horizontalProductScrollAdapter_today = new HorizontalProductScrollAdapter_today(horizontalProductScrollModelList_todays);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        horizontalRecyclerView1.setLayoutManager(linearLayoutManager);
+
+        horizontalRecyclerView1.setAdapter(horizontalProductScrollAdapter_today);
+        horizontalProductScrollAdapter_today.notifyDataSetChanged();
+        ///Horizontal product 1
 
         return view;
 

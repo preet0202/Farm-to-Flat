@@ -18,6 +18,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +26,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <include layout="@layout/sliding_ad_layout" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
+        tools:layout_editor_absoluteY="16dp">
+        <include
+            layout="@layout/horizontal_scroll_layout1" />
+
     </LinearLayout>
 
 
