@@ -23,6 +23,7 @@
         android:id="@+id/horizontal_scroll_layout1_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:text="Deal of the Day"
         android:textColor="#000000"
         android:textSize="16sp"

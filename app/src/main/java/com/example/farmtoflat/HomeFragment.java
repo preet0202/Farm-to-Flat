@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,12 @@ public class HomeFragment extends Fragment {
     private RecyclerView horizontalRecyclerView1;
 
     ///Horizontal product 1
+
+    /////Grid layput
+    private TextView gridLayoutTitle;
+    private Button gridviewAllButton;
+    private GridView gridView;
+    ////Grid layout
 
 
     @Override
@@ -149,6 +156,30 @@ public class HomeFragment extends Fragment {
         horizontalRecyclerView1.setAdapter(horizontalProductScrollAdapter_today);
         horizontalProductScrollAdapter_today.notifyDataSetChanged();
         ///Horizontal product 1
+
+        ////Grid view
+        gridLayoutTitle = view.findViewById(R.id.grid_product_layout_title);
+        gridviewAllButton =view.findViewById(R.id.grid_product_layout_viewall);
+        gridView = view.findViewById(R.id.grid_product_layout_gridview);
+
+        gridView.setAdapter(new GridProductAdapter(horizontalProductScrollModelList_todays));
+        ////Grid view
+
+        ///////////////////////////////////////////
+        RecyclerView testing  = view.findViewById(R.id.testing);
+        LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
+        testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        testing.setLayoutManager(testingLayoutManager);
+
+        List<HomePageModel> homePageModelList = new ArrayList<>();
+        homePageModelList.add(new HomePageModel(0,mSliderModelList));
+        homePageModelList.add(new HomePageModel(2,"Today's Deal",horizontalProductScrollModelList_todays));
+        homePageModelList.add(new HomePageModel(3,"New Arrival",horizontalProductScrollModelList_todays));
+
+        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
+        testing.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        //////////////////////////////////////////
 
         return view;
 

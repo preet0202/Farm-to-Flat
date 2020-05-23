@@ -47,7 +47,13 @@ public class HorizontalProductScrollAdapter_today extends RecyclerView.Adapter<H
 
     @Override
     public int getItemCount() {
-        return mHorizontalProductScrollModel_todays.size();
+
+        if(mHorizontalProductScrollModel_todays.size()>6){
+            return 6;
+        }
+        else {
+            return mHorizontalProductScrollModel_todays.size();
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
