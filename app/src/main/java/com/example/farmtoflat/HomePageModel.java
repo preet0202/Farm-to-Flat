@@ -5,6 +5,7 @@ import java.util.List;
 public class HomePageModel {
 
     public static final int BANNER_SLIDER = 0;
+    public static final int SPECIAL_OFFER_SLIDER =1;
     public static final int HORIZONTAL_PRODUCT_VIEW = 2;
     public static final int GRID_PRODUCT_VIEW = 3;
     private int type;
@@ -28,6 +29,7 @@ public class HomePageModel {
         mSliderModelList = sliderModelList;
     }
     /// banner slider
+    ///special offer slider
 
     /////horizontal product layout && grid produvt layout
     private String title;

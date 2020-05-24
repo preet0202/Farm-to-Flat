@@ -31,8 +31,8 @@ public class HomeFragment extends Fragment {
     private CategoryAdapter mCategoryAdapter;
 
     /// banner slider
-    private ViewPager bannerSliderViewPager;
-    private List<SliderModel> mSliderModelList;
+    private ViewPager bannerSliderViewPager,specialOfferViewPager;
+    private List<SliderModel> mSliderModelList,mSpecialOfferModelList;
     private int currentPage = 2;
     private Timer timer;
     final private long DELAY_TIME = 3000;
@@ -134,6 +134,24 @@ public class HomeFragment extends Fragment {
         });
         //// Banner Slider
 
+        /////Special offer pager
+        specialOfferViewPager = view.findViewById(R.id.special_offer_viewpager);
+        mSpecialOfferModelList = new ArrayList<SliderModel>();
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer5,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer6,"#077AE4"));
+
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer1,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer2,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer3,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer4,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer5,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer6,"#077AE4"));
+
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer1,"#077AE4"));
+        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer2,"#077AE4"));
+
+        /////Special offer pager
+
         ///Horizontal product 1
         horizontalLayoutTitle1 = view.findViewById(R.id.horizontal_scroll_layout1_title);
         horizontalviewAllButton1 =view.findViewById(R.id.horizontal_scroll_layout1_view_all_button);
@@ -175,6 +193,7 @@ public class HomeFragment extends Fragment {
         homePageModelList.add(new HomePageModel(0,mSliderModelList));
         homePageModelList.add(new HomePageModel(2,"Today's Deal",horizontalProductScrollModelList_todays));
         homePageModelList.add(new HomePageModel(3,"New Arrival",horizontalProductScrollModelList_todays));
+        homePageModelList.add(new HomePageModel(1,mSpecialOfferModelList));
 
         HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
         testing.setAdapter(adapter);
