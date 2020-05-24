@@ -32,6 +32,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         switch (mHomePageModelList.get(position).getType()) {
             case 0:
                 return HomePageModel.BANNER_SLIDER;
+            case 1:
+                return HomePageModel.SPECIAL_OFFER_SLIDER;
             case 2:
                 return HomePageModel.HORIZONTAL_PRODUCT_VIEW;
             case 3:
@@ -50,9 +52,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 View bannerSliderView = LayoutInflater.from(parent.getContext()).inflate(R.layout.sliding_ad_layout,parent,false);
                 return new BannerSliderViewHolder(bannerSliderView);
 
+            case HomePageModel.SPECIAL_OFFER_SLIDER:
+                View specialOfferSliderView = LayoutInflater.from(parent.getContext()).inflate(R.layout.special_offer_layout,parent,false);
+                return new SpecialOfferSliderViewHolder(specialOfferSliderView);
+
             case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
                 View horizintalProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_scroll_layout1,parent,false);
                 return new HorizontalProductViewHolder(horizintalProductView);
+
             case HomePageModel.GRID_PRODUCT_VIEW:
                 View gridProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_product_layout,parent,false);
                 return new GridProductViewHolder(gridProductView);
@@ -67,6 +74,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.BANNER_SLIDER:
                 List<SliderModel> sliderModelList = mHomePageModelList.get(position).getSliderModelList();
                 ((BannerSliderViewHolder)holder).setBannerSliderViewPager(sliderModelList);
+                break;
+
+            case HomePageModel.SPECIAL_OFFER_SLIDER:
+                List<SliderModel> specialOfferModelList = mHomePageModelList.get(position).getSliderModelList();
+                ((SpecialOfferSliderViewHolder)holder).setSpecialOfferSliderViewPager(specialOfferModelList);
                 break;
 
             case HomePageModel.HORIZONTAL_PRODUCT_VIEW:
@@ -177,7 +189,93 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             timer.cancel();
         }
     }
+    public class SpecialOfferSliderViewHolder extends RecyclerView.ViewHolder{
 
+        private ViewPager specialofferViewPager;
+        private int currentPage = 2;
+        private Timer timer;
+        final private long DELAY_TIME = 3000;
+        final private long PERIOD_TIME = 3000;
+
+        public SpecialOfferSliderViewHolder(@NonNull View itemView) {
+            super(itemView);
+            specialofferViewPager = itemView.findViewById(R.id.special_offer_viewpager);
+        }
+        private void setSpecialOfferSliderViewPager(final List<SliderModel> mSliderModelList){
+
+            SpecialOfferSliderAdapter  specialOfferSliderAdapter= new SpecialOfferSliderAdapter(mSliderModelList);
+            specialofferViewPager.setAdapter(specialOfferSliderAdapter);
+            specialofferViewPager.setClipToPadding(false);
+            specialofferViewPager.setPageMargin(20);
+
+            specialofferViewPager.setCurrentItem(currentPage);
+
+            ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    currentPage = position;
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                    if(state == ViewPager.SCROLL_STATE_IDLE){
+                        pageLooper(mSliderModelList);
+                    }
+                }
+            };
+            specialofferViewPager.addOnPageChangeListener(onPageChangeListener);
+
+            startbannerSlideShow(mSliderModelList);
+            specialofferViewPager.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View view, MotionEvent motionEvent) {
+                    pageLooper(mSliderModelList);
+                    stopbannerSlideShow();
+                    if(motionEvent.getAction() == MotionEvent.ACTION_UP){
+                        startbannerSlideShow(mSliderModelList);
+                    }
+                    return false;
+                }
+            });
+        }
+        private void pageLooper(List<SliderModel> mSliderModelList){
+            if(currentPage == mSliderModelList.size()-2){
+                currentPage=2;
+                specialofferViewPager.setCurrentItem(currentPage,false);
+            }
+            if(currentPage == 1){
+                currentPage=mSliderModelList.size()-3;
+                specialofferViewPager.setCurrentItem(currentPage,false);
+            }
+        }
+        private void startbannerSlideShow(final List<SliderModel> mSliderModelList) {
+            final Handler handler = new Handler();
+            final Runnable update = new Runnable(){
+                @Override
+                public void run() {
+                    if(currentPage >= mSliderModelList.size()){
+                        currentPage =1;
+                    }
+                    specialofferViewPager.setCurrentItem(currentPage++,true);
+                }
+            };
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    handler.post(update);
+                }
+            },DELAY_TIME,PERIOD_TIME);
+        }
+        private void stopbannerSlideShow() {
+            timer.cancel();
+        }
+    }
     public class HorizontalProductViewHolder extends  RecyclerView.ViewHolder {
 
         private TextView horizontalLayoutTitle1;
@@ -193,7 +291,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private void setHorizontalProductLayout(List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays, String title){
 
             horizontalLayoutTitle1.setText(title);
-            if(horizontalProductScrollModelList_todays.size()>6){
+            if(horizontalProductScrollModelList_todays.size()>4){
                 horizontalviewAllButton1.setVisibility(View.VISIBLE);
             }
             else{
