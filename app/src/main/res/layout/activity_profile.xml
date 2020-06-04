@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ProfileActivity">
+    tools:context=".ProfileActivity">
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -19,12 +19,13 @@
         android:src="@mipmap/ic_launcher"
         android:layout_margin="18dp"/>
 
-        <!--<TextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profile Pic"
             android:textColor="#000"
-            />-->
+            android:layout_toRightOf="@+id/profile_pic"
+            android:layout_marginTop="50dp"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -34,7 +35,7 @@
             android:background="@drawable/button_background"
             android:layout_alignParentEnd="true"
             android:text="Edit Profile"
-            android:elevation="10dp"/>
+            android:elevation="20dp"/>
 
     </RelativeLayout>
 
@@ -71,6 +72,23 @@
         android:layout_marginLeft="18dp"
         android:layout_marginTop="8dp"
         android:hint="Postal Code"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        android:textColor="#000"
+        android:textSize="16dp"
+        android:text="Mobile Number"/>
+
+    <EditText
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        android:maxLength="10"
+        android:hint="Mobile Number"/>
 
     <TextView
         android:layout_width="wrap_content"

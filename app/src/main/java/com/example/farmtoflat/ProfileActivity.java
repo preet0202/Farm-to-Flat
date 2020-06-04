@@ -1,4 +1,4 @@
-package com.example.farmtoflat.ui;
+package com.example.farmtoflat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
