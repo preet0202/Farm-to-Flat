@@ -1,5 +1,7 @@
 package com.example.farmtoflat;
 
+import android.widget.ImageView;
+
 import java.util.List;
 
 public class HomePageModel {
@@ -8,6 +10,9 @@ public class HomePageModel {
     public static final int SPECIAL_OFFER_SLIDER =1;
     public static final int HORIZONTAL_PRODUCT_VIEW = 2;
     public static final int GRID_PRODUCT_VIEW = 3;
+    public static final int LUCKY_COUPON_VIEW = 4;
+    public static final int FOLLOW_US = 5;
+
     private int type;
 
     /// banner slider
@@ -22,6 +27,7 @@ public class HomePageModel {
     public void setType(int type) {
         this.type = type;
     }
+
     public List<SliderModel> getSliderModelList() {
         return mSliderModelList;
     }
@@ -52,7 +58,30 @@ public class HomePageModel {
         mHorizontalProductScrollModel_todayList = horizontalProductScrollModel_todayList;
     }
     /////horizontal product layout && grid produvt layout
-
     ////Grid view
 
+    ////lucky coupon
+    private List<LuckyCouponModel> mLuckyCouponModelList;
+    String luckyCouponTitle;
+    public HomePageModel(int type, List<LuckyCouponModel> luckyCouponModelList, String luckyCouponTitle) {
+        this.type = type;
+        mLuckyCouponModelList = luckyCouponModelList;
+        this.luckyCouponTitle = luckyCouponTitle;
+    }
+    public List<LuckyCouponModel> getLuckyCouponModelList() {
+        return mLuckyCouponModelList;
+    }
+    public void setLuckyCouponModelList(List<LuckyCouponModel> luckyCouponModelList) {
+        mLuckyCouponModelList = luckyCouponModelList;
+    }
+    public String getLuckyCouponTitle() {
+        return luckyCouponTitle;
+    }
+    public void setLuckyCouponTitle(String luckyCouponTitle) {
+        this.luckyCouponTitle = luckyCouponTitle;
+    }
+
+    public HomePageModel(int type) {
+        this.type = type;
+    }
 }

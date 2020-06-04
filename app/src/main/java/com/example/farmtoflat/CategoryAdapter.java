@@ -1,6 +1,7 @@
 package com.example.farmtoflat;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         String icon = mCategoryModel.get(position).getCategoryLink();
         String name = mCategoryModel.get(position).getCategoryName();
-        viewHolder.setCategoryName(name);
+        viewHolder.setCategory(name);
     }
 
     @Override
@@ -56,8 +57,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             //todo:set categoryIcon here
         }
 
-        private void setCategoryName(String name){
+        private void setCategory(final String name){
             categoryName.setText(name);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(name == "More") {
+                        Intent categoryIntent = new Intent(itemView.getContext(), MoreActivity.class);
+                        categoryIntent.putExtra("CategoryName", name);
+                        itemView.getContext().startActivity(categoryIntent);
+                    }
+                }
+            });
+
         }
 
     }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,10 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 return HomePageModel.HORIZONTAL_PRODUCT_VIEW;
             case 3:
                 return HomePageModel.GRID_PRODUCT_VIEW;
+            case 4:
+                return HomePageModel.LUCKY_COUPON_VIEW;
+            case 5:
+                return HomePageModel.FOLLOW_US;
             default:
                 return -1;
         }
@@ -63,6 +68,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             case HomePageModel.GRID_PRODUCT_VIEW:
                 View gridProductView = LayoutInflater.from(parent.getContext()).inflate(R.layout.grid_product_layout,parent,false);
                 return new GridProductViewHolder(gridProductView);
+
+            case HomePageModel.LUCKY_COUPON_VIEW:
+                View luckyCouponView = LayoutInflater.from(parent.getContext()).inflate(R.layout.lucky_coupons,parent,false);
+                return new LuckyCouponViewHolder(luckyCouponView);
+
+            case HomePageModel.FOLLOW_US:
+                View followus = LayoutInflater.from(parent.getContext()).inflate(R.layout.follow_and_feedback,parent,false);
+                return new FolllowandFeedbackViewHolder(followus);
             default:
                 return null;
         }
@@ -91,6 +104,12 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 String gridlayouttitle = mHomePageModelList.get(position).getTitle();
                 List<HorizontalProductScrollModel_today> gridProductScrollModel_todayList = mHomePageModelList.get(position).getHorizontalProductScrollModel_todayList();
                 ((GridProductViewHolder)holder).setGridProductLayout(gridProductScrollModel_todayList,gridlayouttitle);
+                break;
+
+            case HomePageModel.LUCKY_COUPON_VIEW:
+                String luckyCoupontitle = mHomePageModelList.get(position).getTitle();
+                List<LuckyCouponModel> luckyCouponModelList = mHomePageModelList.get(position).getLuckyCouponModelList();
+                ((LuckyCouponViewHolder)holder).setLuckyCouponLayout(luckyCoupontitle,luckyCouponModelList);
                 break;
 
             default:
@@ -322,6 +341,30 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private void setGridProductLayout(List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays,String title){
             gridLayoutTitle.setText(title);
             gridView.setAdapter(new GridProductAdapter(horizontalProductScrollModelList_todays));
+        }
+    }
+
+    public class LuckyCouponViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView luckyCouponTitle;
+        private ImageView photo1;
+        private ImageView photo2;
+        private ImageView photo3;
+        public LuckyCouponViewHolder(@NonNull View itemView) {
+            super(itemView);
+            luckyCouponTitle = itemView.findViewById(R.id.lucky_coupon_title);
+            photo1 = itemView.findViewById(R.id.lucky_coupon_image1);
+            photo2 = itemView.findViewById(R.id.lucky_coupon_image2);
+            photo3 = itemView.findViewById(R.id.lucky_coupon_image3);
+        }
+        private void setLuckyCouponLayout(String title,List<LuckyCouponModel> luckyCouponModelList){
+            luckyCouponTitle.setText(title);
+        }
+    }
+    public class FolllowandFeedbackViewHolder extends RecyclerView.ViewHolder{
+
+        public FolllowandFeedbackViewHolder(@NonNull View itemView) {
+            super(itemView);
         }
     }
 

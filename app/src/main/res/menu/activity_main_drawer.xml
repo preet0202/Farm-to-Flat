@@ -4,6 +4,10 @@
     tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_my_home"
+            android:icon="@drawable/baseline_home_black_18dp"
+            android:title="My Home" />
+        <item
             android:id="@+id/nav_my_orders"
             android:icon="@drawable/baseline_shopping_basket_black_18dp"
             android:title="My Orders" />

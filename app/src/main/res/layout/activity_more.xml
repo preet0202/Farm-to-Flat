@@ -90,13 +90,13 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:padding="20dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="10dp"
+                android:layout_columnWeight="1"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                android:layout_marginRight="16dp">
+                android:padding="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,15 +104,14 @@
                     android:background="#F9E5BC">
 
                     <TextView
-                        android:gravity="center_vertical|center"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:gravity="center_vertical|center"
                         android:padding="10dp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:text="My\nProfile"/>
+                        android:text="My\nProfile"
+                        android:textColor="@color/colorPrimaryDark" />
 
                 </LinearLayout>
-
 
 
             </androidx.cardview.widget.CardView>

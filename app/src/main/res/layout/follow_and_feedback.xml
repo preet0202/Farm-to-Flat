@@ -22,27 +22,27 @@
             android:textStyle="bold"/>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
 
             <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/f_logo"
-                android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:src="@drawable/f_logo" />
 
             <ImageView
-                android:layout_marginLeft="50dp"
-                android:src="@drawable/y_logo"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:layout_marginLeft="50dp"
+                android:src="@drawable/y_logo" />
 
             <ImageView
-                android:layout_marginLeft="50dp"
-                android:src="@drawable/i_logo"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:layout_marginLeft="50dp"
+                android:src="@drawable/i_logo" />
 
 
         </LinearLayout>
