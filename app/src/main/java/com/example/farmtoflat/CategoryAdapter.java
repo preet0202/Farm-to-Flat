@@ -1,7 +1,11 @@
 package com.example.farmtoflat;
 
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -66,6 +71,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         Intent categoryIntent = new Intent(itemView.getContext(), MoreActivity.class);
                         categoryIntent.putExtra("CategoryName", name);
                         itemView.getContext().startActivity(categoryIntent);
+                    } else if (name == "Order Now") {
+                        String dial = "";  //enter the number to call
+                        itemView.getContext().startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", dial, null)));
                     }
                 }
             });
@@ -73,5 +81,4 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         }
 
     }
-
 }
