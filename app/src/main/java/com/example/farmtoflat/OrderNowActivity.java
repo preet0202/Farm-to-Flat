@@ -41,10 +41,16 @@ public class OrderNowActivity extends AppCompatActivity {
         whatsappOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri uri = Uri.parse("smsto:" + WhatsappNumber);
+                /*Uri uri = Uri.parse("smsto:" + WhatsappNumber);
                 Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
                 intent.setPackage("com.whatsapp");
-                startActivity(intent);
+                startActivity(intent);*/
+
+
+                String url = "https://api.whatsapp.com/send?phone="+WhatsappNumber+"&text=Start writing your Order:-";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
     }
