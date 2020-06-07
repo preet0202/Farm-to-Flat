@@ -72,8 +72,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                         categoryIntent.putExtra("CategoryName", name);
                         itemView.getContext().startActivity(categoryIntent);
                     } else if (name == "Order Now") {
-                        String dial = "";  //enter the number to call
-                        itemView.getContext().startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", dial, null)));
+//                        String dial = "";  //enter the number to call
+//                        itemView.getContext().startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", dial, null)));
+                        itemView.getContext().startActivity(new Intent(itemView.getContext(), OrderNowActivity.class));
                     }
                 }
             });
