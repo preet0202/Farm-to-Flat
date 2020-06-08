@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView actionBarLogo;
 
     private FrameLayout mFrameLayout;
-    private static int currentFragment;
+    private static int currentFragment=1;
 
 
 
@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        actionBarLogo.setVisibility(View.VISIBLE);
         mFrameLayout = findViewById(R.id.main_framelayout);
         setFragment(new HomeFragment(),HOME_FRAGMENT);
     }
@@ -131,12 +133,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (id == R.id.nav_my_home) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-                actionBarLogo.setVisibility(View.VISIBLE);
-                invalidateOptionsMenu();
-                setFragment(new HomeFragment(),HOME_FRAGMENT);
+            actionBarLogo.setVisibility(View.VISIBLE);
+            invalidateOptionsMenu();
+            setFragment(new HomeFragment(),HOME_FRAGMENT);
 
         } else if (id == R.id.nav_my_cart) {
-                myCart();
+            myCart();
         } else if (id == R.id.nav_my_account) {
 
         }
