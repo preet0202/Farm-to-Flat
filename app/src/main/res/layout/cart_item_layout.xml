@@ -7,6 +7,7 @@
     android:elevation="3dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
+    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -50,6 +51,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginStart="16dp"
+                    android:tint="#9400D3"
                     android:layout_marginTop="8dp"
                     android:outlineSpotShadowColor="#9400D3"
                     app:layout_constraintBottom_toBottomOf="@+id/free_coupon"
@@ -182,6 +184,12 @@
 
     </LinearLayout>
 
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_marginTop="4dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
 
 
 </LinearLayout>
