@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int CART_FRAGMENT =1;
     private static final int ORDERS_FRAGMENT =2;
 
+    private static final int REWARDS_FRAGMENT =2;
     private NavigationView navigationView;
     private ImageView actionBarLogo;
 
@@ -68,6 +69,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navigationView.getMenu().getItem(2).setChecked(true);
         }
     }
+    private void myRewards(){
+        actionBarLogo.setVisibility(View.GONE);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("My Rewards");
+        invalidateOptionsMenu();//invalidates all option on notificatio bar
+        setFragment(new RewardFragment(),REWARDS_FRAGMENT);
+        navigationView.getMenu().getItem(3).setChecked(true);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -147,6 +157,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             gotoFragment("My Orders", new MyOrderFragment(),ORDERS_FRAGMENT);
         } else if (id == R.id.nav_my_account) {
 
+        } else if (id == R.id.nav_my_reward){
+            myRewards();
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
