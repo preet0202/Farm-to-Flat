@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int ORDERS_FRAGMENT =2;
 
     private static final int REWARDS_FRAGMENT =3;
+    private static final int ACCOUNT_FRAGMENT =4;
     private NavigationView navigationView;
     private ImageView actionBarLogo;
 
@@ -156,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_my_orders) {
             gotoFragment("My Orders", new MyOrderFragment(),ORDERS_FRAGMENT);
         } else if (id == R.id.nav_my_account) {
-
+            gotoFragment("My Account", new MyAccountFragment(), ACCOUNT_FRAGMENT);
         } else if (id == R.id.nav_my_reward){
 //            myRewards();
             gotoFragment("My Rewards", new RewardFragment(),REWARDS_FRAGMENT);
