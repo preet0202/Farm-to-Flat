@@ -4,6 +4,7 @@
     <color name="cancelled">#FF0000</color>
     <color name="colorPrimaryDark">#3eb828</color>
     <color name="colorAccent">#64C34A</color>
+    <color name="SuccessGreen">#4BB543</color>
     <color name="RecyclerViewBackground">#d6d6d6</color>
 
 </resources>

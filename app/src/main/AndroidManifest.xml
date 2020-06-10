@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.farmtoflat">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OrderNowActivity"></activity>
+        <activity android:name=".OrderDetailsActivity"></activity>
+        <activity android:name=".OrderNowActivity" />
         <activity android:name=".NewAndExistingUserActivity" />
         <activity android:name=".ProfileActivity" />
         <activity
@@ -36,5 +34,8 @@
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
