@@ -91,7 +91,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(currentFragment == HOME_FRAGMENT){
+                currentFragment =-1;
+                super.onBackPressed();
+
+            }else{
+                actionBarLogo.setVisibility(View.VISIBLE);
+                invalidateOptionsMenu();
+                setFragment(new HomeFragment(),HOME_FRAGMENT);
+                navigationView.getMenu().getItem(0).setChecked(true);
+            }
         }
     }
 
