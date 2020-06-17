@@ -1,23 +1,28 @@
 package com.example.farmtoflat;
 
 import android.content.Intent;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridLayout;
+
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.gridlayout.widget.GridLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Slide;
 import androidx.viewpager.widget.ViewPager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -129,17 +134,32 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     public class BannerSliderViewHolder extends RecyclerView.ViewHolder {
 
         private ViewPager bannerSliderViewPager;
-        private int currentPage = 2;
+        private int currentPage ;
         private Timer timer;
         final private long DELAY_TIME = 3000;
         final private long PERIOD_TIME = 3000;
+        private List<SliderModel> arrangedList;
 
         public BannerSliderViewHolder(@NonNull View itemView) {
             super(itemView);
             bannerSliderViewPager = itemView.findViewById(R.id.banner_slider_view_pager);
         }
         private void setBannerSliderViewPager(final List<SliderModel> mSliderModelList){
-            SliderAdapter  sliderAdapter= new SliderAdapter(mSliderModelList);
+            currentPage =2;
+            if(timer != null){
+                timer.cancel();
+            }
+            arrangedList = new ArrayList<>();
+            for(int x=0;x < mSliderModelList.size();x++){
+                arrangedList.add(x,mSliderModelList.get(x));
+            }
+
+            arrangedList.add(0,mSliderModelList.get(mSliderModelList.size()-2));
+            arrangedList.add(1,mSliderModelList.get(mSliderModelList.size()-1));
+            arrangedList.add(mSliderModelList.get(0));
+            arrangedList.add(mSliderModelList.get(1));
+
+            SliderAdapter  sliderAdapter= new SliderAdapter(arrangedList);
             bannerSliderViewPager.setAdapter(sliderAdapter);
             bannerSliderViewPager.setClipToPadding(false);
             bannerSliderViewPager.setPageMargin(20);
@@ -160,20 +180,20 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onPageScrollStateChanged(int state) {
                     if(state == ViewPager.SCROLL_STATE_IDLE){
-                        pageLooper(mSliderModelList);
+                        pageLooper(arrangedList);
                     }
                 }
             };
             bannerSliderViewPager.addOnPageChangeListener(onPageChangeListener);
 
-            startbannerSlideShow(mSliderModelList);
+            startbannerSlideShow(arrangedList);
             bannerSliderViewPager.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    pageLooper(mSliderModelList);
+                    pageLooper(arrangedList);
                     stopbannerSlideShow();
                     if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-                        startbannerSlideShow(mSliderModelList);
+                        startbannerSlideShow(arrangedList);
                     }
                     return false;
                 }
@@ -216,10 +236,11 @@ public class HomePageAdapter extends RecyclerView.Adapter {
     public class SpecialOfferSliderViewHolder extends RecyclerView.ViewHolder{
 
         private ViewPager specialofferViewPager;
-        private int currentPage = 2;
+        private int currentPage;
         private Timer timer;
         final private long DELAY_TIME = 3000;
         final private long PERIOD_TIME = 3000;
+        private List<SliderModel> arrangedList;
 
         public SpecialOfferSliderViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -227,7 +248,21 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
         private void setSpecialOfferSliderViewPager(final List<SliderModel> mSliderModelList){
 
-            SpecialOfferSliderAdapter  specialOfferSliderAdapter= new SpecialOfferSliderAdapter(mSliderModelList);
+            currentPage =2;
+            if(timer != null){
+                timer.cancel();
+            }
+            arrangedList = new ArrayList<>();
+            for(int x=0;x < mSliderModelList.size();x++){
+                arrangedList.add(x,mSliderModelList.get(x));
+            }
+
+            arrangedList.add(0,mSliderModelList.get(mSliderModelList.size()-2));
+            arrangedList.add(1,mSliderModelList.get(mSliderModelList.size()-1));
+            arrangedList.add(mSliderModelList.get(0));
+            arrangedList.add(mSliderModelList.get(1));
+
+            SpecialOfferSliderAdapter  specialOfferSliderAdapter= new SpecialOfferSliderAdapter(arrangedList);
             specialofferViewPager.setAdapter(specialOfferSliderAdapter);
             specialofferViewPager.setClipToPadding(false);
             specialofferViewPager.setPageMargin(20);
@@ -248,20 +283,20 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onPageScrollStateChanged(int state) {
                     if(state == ViewPager.SCROLL_STATE_IDLE){
-                        pageLooper(mSliderModelList);
+                        pageLooper(arrangedList);
                     }
                 }
             };
             specialofferViewPager.addOnPageChangeListener(onPageChangeListener);
 
-            startbannerSlideShow(mSliderModelList);
+            startbannerSlideShow(arrangedList);
             specialofferViewPager.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    pageLooper(mSliderModelList);
+                    pageLooper(arrangedList);
                     stopbannerSlideShow();
                     if(motionEvent.getAction() == MotionEvent.ACTION_UP){
-                        startbannerSlideShow(mSliderModelList);
+                        startbannerSlideShow(arrangedList);
                     }
                     return false;
                 }

@@ -1,22 +1,19 @@
 package com.example.farmtoflat;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
@@ -59,7 +56,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(id== R.id.main_notification_icon){
             return true;
         }else if(id== R.id.action_main_cart_icon){
-            gotoFragment("My Cart", new MycartFragment(),CART_FRAGMENT);
+           // gotoFragment("My Cart", new MycartFragment(),CART_FRAGMENT);
+            final Dialog signInDialog = new Dialog(MainActivity.this);
+            signInDialog.setContentView(R.layout.sign_in_dialog);
+            signInDialog.setCancelable(true);
+            signInDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            Button dialogSignInBn = signInDialog.findViewById(R.id.cancel_btn);
+            Button dialogSignUpBn = signInDialog.findViewById(R.id.ok_btn);
+            final Intent registerIntent = new Intent(MainActivity.this,NewAndExistingUserActivity.class);
+            dialogSignInBn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    signInDialog.dismiss();
+                    startActivity(registerIntent);
+                }
+            });
+
+            dialogSignUpBn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    signInDialog.dismiss();
+                    startActivity(registerIntent);
+                }
+            });
+            signInDialog.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -91,7 +111,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(currentFragment == HOME_FRAGMENT){
+                currentFragment =-1;
+                super.onBackPressed();
+
+            }else{
+                actionBarLogo.setVisibility(View.VISIBLE);
+                invalidateOptionsMenu();
+                setFragment(new HomeFragment(),HOME_FRAGMENT);
+                navigationView.getMenu().getItem(0).setChecked(true);
+            }
         }
     }
 
@@ -158,7 +187,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setFragment(new HomeFragment(),HOME_FRAGMENT);
 
         } else if (id == R.id.nav_my_cart) {
-            gotoFragment("My Cart", new MycartFragment(),CART_FRAGMENT);
+            //gotoFragment("My Cart", new MycartFragment(),CART_FRAGMENT);
+            final Dialog signInDialog = new Dialog(MainActivity.this);
+            signInDialog.setContentView(R.layout.sign_in_dialog);
+            signInDialog.setCancelable(true);
+            signInDialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+            Button dialogSignInBn = signInDialog.findViewById(R.id.cancel_btn);
+            Button dialogSignUpBn = signInDialog.findViewById(R.id.ok_btn);
+            final Intent registerIntent = new Intent(MainActivity.this,NewAndExistingUserActivity.class);
+            dialogSignInBn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    signInDialog.dismiss();
+                    startActivity(registerIntent);
+                }
+            });
+
+            dialogSignUpBn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    signInDialog.dismiss();
+                    startActivity(registerIntent);
+                }
+            });
+            signInDialog.show();
         } else if (id == R.id.nav_my_orders) {
             gotoFragment("My Orders", new MyOrderFragment(),ORDERS_FRAGMENT);
         } else if (id == R.id.nav_my_account) {

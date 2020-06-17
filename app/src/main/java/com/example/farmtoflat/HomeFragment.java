@@ -56,20 +56,12 @@ public class HomeFragment extends Fragment {
 
         ///// Banner Slider
         List <SliderModel> mSliderModelList = new ArrayList<SliderModel>();
-
-        mSliderModelList.add(new SliderModel(R.drawable.photo5,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo6,"#077AE4"));
-
         mSliderModelList.add(new SliderModel(R.drawable.photo1,"#077AE4"));
         mSliderModelList.add(new SliderModel(R.drawable.photo2,"#077AE4"));
         mSliderModelList.add(new SliderModel(R.drawable.photo3,"#077AE4"));
         mSliderModelList.add(new SliderModel(R.drawable.photo4,"#077AE4"));
         mSliderModelList.add(new SliderModel(R.drawable.photo5,"#077AE4"));
         mSliderModelList.add(new SliderModel(R.drawable.photo6,"#077AE4"));
-
-        mSliderModelList.add(new SliderModel(R.drawable.photo1,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo2,"#077AE4"));
-
         //// Banner Slider
 
         /////Special offer pager

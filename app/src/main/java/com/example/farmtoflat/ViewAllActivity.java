@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.LinearLayout;
 
 public class ViewAllActivity extends AppCompatActivity {
 
@@ -88,12 +89,24 @@ public class ViewAllActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "layout_code_error", Toast.LENGTH_SHORT).show();
         }
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Today's Deal");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setVisibility(View.VISIBLE);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
 
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
         if (item.getItemId() == android.R.id.home){
             finish();
             return true;
