@@ -1,11 +1,13 @@
 package com.example.farmtoflat;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,9 +25,11 @@ import java.util.TimerTask;
 public class HomePageAdapter extends RecyclerView.Adapter {
 
     private List<HomePageModel> mHomePageModelList;
+    private RecyclerView.RecycledViewPool recycledViewPool;
 
     public HomePageAdapter(List<HomePageModel> homePageModelList) {
         mHomePageModelList = homePageModelList;
+        recycledViewPool = new RecyclerView.RecycledViewPool();
     }
 
     @Override
@@ -208,6 +212,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             timer.cancel();
         }
     }
+
     public class SpecialOfferSliderViewHolder extends RecyclerView.ViewHolder{
 
         private ViewPager specialofferViewPager;
@@ -295,6 +300,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             timer.cancel();
         }
     }
+
     public class HorizontalProductViewHolder extends  RecyclerView.ViewHolder {
 
         private TextView horizontalLayoutTitle1;
@@ -306,12 +312,21 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             horizontalLayoutTitle1 = itemView.findViewById(R.id.horizontal_scroll_layout1_title);
             horizontalviewAllButton1 =itemView.findViewById(R.id.horizontal_scroll_layout1_view_all_button);
             horizontalRecyclerView1 = itemView.findViewById(R.id.horizontal_scroll_layout1_recylerview);
+            horizontalRecyclerView1.setRecycledViewPool(recycledViewPool);
         }
         private void setHorizontalProductLayout(List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays, String title){
 
             horizontalLayoutTitle1.setText(title);
             if(horizontalProductScrollModelList_todays.size()>4){
                 horizontalviewAllButton1.setVisibility(View.VISIBLE);
+                horizontalviewAllButton1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent viewAllIntent = new Intent(itemView.getContext(), ViewAllActivity.class);
+                        viewAllIntent.putExtra("layout_code",0);
+                        itemView.getContext().startActivity(viewAllIntent);
+                    }
+                });
             }
             else{
                 horizontalviewAllButton1.setVisibility(View.INVISIBLE);
@@ -330,17 +345,32 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
         private TextView gridLayoutTitle;
         private Button gridviewAllButton;
-        private GridView gridView;
+        private GridLayout gridProductLayout;
 
         public GridProductViewHolder(@NonNull View itemView) {
             super(itemView);
             gridLayoutTitle = itemView.findViewById(R.id.grid_product_layout_title);
             gridviewAllButton =itemView.findViewById(R.id.grid_product_layout_viewall);
-            gridView = itemView.findViewById(R.id.grid_product_layout_gridview);
+            gridProductLayout = itemView.findViewById(R.id.grid_layout);
+
         }
         private void setGridProductLayout(List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays,String title){
             gridLayoutTitle.setText(title);
-            gridView.setAdapter(new GridProductAdapter(horizontalProductScrollModelList_todays));
+
+
+            for (int x = 0;x < 4;x++) {
+
+            }
+
+
+            gridviewAllButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent viewAllIntent = new Intent(itemView.getContext(), ViewAllActivity.class);
+                    viewAllIntent.putExtra("layout_code",1);
+                    itemView.getContext().startActivity(viewAllIntent);
+                }
+            });
         }
     }
 
@@ -361,6 +391,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             luckyCouponTitle.setText(title);
         }
     }
+
     public class FolllowandFeedbackViewHolder extends RecyclerView.ViewHolder{
 
         public FolllowandFeedbackViewHolder(@NonNull View itemView) {

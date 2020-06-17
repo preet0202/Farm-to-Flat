@@ -51,7 +51,6 @@ public class RewardFragment extends Fragment {
         RewardsAdapter rewardsAdapter = new RewardsAdapter(rewardModelList);
         rewardsRV.setAdapter(rewardsAdapter);
         rewardsAdapter.notifyDataSetChanged();
-
         return view;
     }
 }
