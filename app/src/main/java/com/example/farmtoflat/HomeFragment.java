@@ -109,7 +109,7 @@ public class HomeFragment extends Fragment {
         homePageModelList.add(new HomePageModel(0,mSliderModelList));
         homePageModelList.add(new HomePageModel(2,"Today's Deal",horizontalProductScrollModelList_todays));
         homePageModelList.add(new HomePageModel(3,"New Arrival",horizontalProductScrollModelList_todays));
-        homePageModelList.add(new HomePageModel(1,mSpecialOfferModelList));
+//        homePageModelList.add(new HomePageModel(1,mSpecialOfferModelList));
         homePageModelList.add(new HomePageModel(4,luckyCouponModelList,"Lucky Coupon"));
         homePageModelList.add(new HomePageModel(5));
 

@@ -35,13 +35,24 @@ public class ViewAllActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        recyclerView.findViewById(R.id.recycler_view);
+
+
+
+        int layout_code = getIntent().getIntExtra("layout_code", -1);
+
+        recyclerView = findViewById(R.id.recycler_view);
         gridView.findViewById(R.id.grid_view);
 
-
-        int layout_code = getIntent().getIntExtra("layout_code",-1);
-
         if (layout_code == 0) {
+
+
+            recyclerView.setVisibility(View.VISIBLE);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+
+
 
             recyclerView.setVisibility(View.VISIBLE);
             LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -64,7 +75,7 @@ public class ViewAllActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
-        }else if (layout_code == 1) {
+        } else if (layout_code == 1) {
             ////2nd condition
 
             gridView.setVisibility(View.VISIBLE);
@@ -86,31 +97,19 @@ public class ViewAllActivity extends AppCompatActivity {
 
             GridProductAdapter gridProductAdapter = new GridProductAdapter(horizontalProductScrollModelList_todays);
             gridView.setAdapter(gridProductAdapter);
-        } else {
-            Toast.makeText(this, "layout_code_error", Toast.LENGTH_SHORT).show();
         }
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Today's Deal");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setVisibility(View.VISIBLE);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
 
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
-        if (item.getItemId() == android.R.id.home){
-            finish();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+                finish();
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+
+
     }
 }

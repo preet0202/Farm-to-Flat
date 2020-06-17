@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -394,6 +395,26 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
 
             for (int x = 0;x < 4;x++) {
+
+                ImageView productImage = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_image);
+                TextView productTitle = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_title);
+                TextView productWeight = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_weight);
+                TextView productPrice = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_price);
+
+                productImage.setImageResource(horizontalProductScrollModelList_todays.get(x).getProductImage());
+                productTitle.setText(horizontalProductScrollModelList_todays.get(x).getProductTitle());
+                productWeight.setText(horizontalProductScrollModelList_todays.get(x).getProductWeight());
+                productPrice.setText(horizontalProductScrollModelList_todays.get(x).getProductPrice());
+
+
+                gridProductLayout.getChildAt(x).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /*Intent productDetailsIntent = new Intent(itemView.getContext(),Produ)*/
+                        Toast.makeText(itemView.getContext(), "To Product Detail Activity", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
             }
 

@@ -7,7 +7,7 @@
     tools:context=".ViewAllActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout6"
+        android:id="@+id/appBarLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -29,27 +29,18 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#EFEFEF"
+        android:background="@color/RecyclerViewBackground"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout5" />
-        android:visibility="gone"
-        android:background="@color/RecyclerViewBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout6" />
+
 
     <GridView
         android:id="@+id/grid_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#EFEFEF"
-        android:horizontalSpacing="1dp"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="1dp"
         android:numColumns="auto_fit"
         android:background="@color/RecyclerViewBackground"
         android:verticalSpacing="1dp"
@@ -59,6 +50,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout5" />
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
