@@ -44,8 +44,6 @@ public class ViewAllAdapter extends RecyclerView.Adapter<ViewAllAdapter.ViewHold
         String paymentMethod = viewAllModelList.get(position).getPaymentMethod();
 
         holder.setData(resource, title, freecoupens, rating, totalRatings, productPrice, cuttedPrice, paymentMethod);
-
-
     }
 
     @Override

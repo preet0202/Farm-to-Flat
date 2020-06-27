@@ -382,6 +382,10 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private TextView gridLayoutTitle;
         private Button gridviewAllButton;
         private GridLayout gridProductLayout;
+        ImageView productImage;
+        TextView productTitle;
+        TextView productWeight;
+        TextView productPrice;
 
         public GridProductViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -394,12 +398,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
             gridLayoutTitle.setText(title);
 
 
+
+
             for (int x = 0;x < 4;x++) {
 
-                ImageView productImage = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_image);
-                TextView productTitle = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_title);
-                TextView productWeight = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_weight);
-                TextView productPrice = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_price);
+                 productImage = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_image);
+                 productTitle = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_title);
+                 productWeight = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_weight);
+                 productPrice = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_price);
 
                 productImage.setImageResource(horizontalProductScrollModelList_todays.get(x).getProductImage());
                 productTitle.setText(horizontalProductScrollModelList_todays.get(x).getProductTitle());

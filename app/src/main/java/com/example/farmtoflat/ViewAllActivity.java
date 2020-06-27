@@ -20,7 +20,7 @@ public class ViewAllActivity extends AppCompatActivity {
 
 
     private RecyclerView recyclerView;
-    private GridView gridView;
+    private android.widget.GridView gridView;
 
 
     @Override
@@ -40,9 +40,32 @@ public class ViewAllActivity extends AppCompatActivity {
 
         int layout_code = getIntent().getIntExtra("layout_code", -1);
 
-        recyclerView = findViewById(R.id.recycler_view);
-        gridView.findViewById(R.id.grid_view);
+        recyclerView = findViewById(R.id.view_all_recycler_view);
+        gridView = (android.widget.GridView) findViewById(R.id.view_all_grid_view);
 
+         if (layout_code == 1) {
+            ////2nd condition
+
+            gridView.setVisibility(View.VISIBLE);
+
+            List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays = new ArrayList<>();
+
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1, "Carrot", "10Kg", "Rs. 200/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_, "Potato", "10Kg", "Rs. 100/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3, "Ladyfinger", "10Kg", "Rs. 300/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4, "Tomato", "10Kg", "Rs. 200/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5, "Shimla Mirch", "10Kg", "Rs. 500/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6, "Chilli", "10Kg", "Rs. 400/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1, "Carrot", "10Kg", "Rs. 200/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_, "Potato", "10Kg", "Rs. 100/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3, "Ladyfinger", "10Kg", "Rs. 300/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4, "Tomato", "10Kg", "Rs. 200/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5, "Shimla Mirch", "10Kg", "Rs. 500/-"));
+            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6, "Chilli", "10Kg", "Rs. 400/-"));
+
+            GridProductAdapter gridProductAdapter = new GridProductAdapter(horizontalProductScrollModelList_todays);
+            gridView.setAdapter(gridProductAdapter);
+        }
         if (layout_code == 0) {
 
 
@@ -75,31 +98,7 @@ public class ViewAllActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
-        } else if (layout_code == 1) {
-            ////2nd condition
-
-            gridView.setVisibility(View.VISIBLE);
-
-            List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays = new ArrayList<>();
-
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1, "Carrot", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_, "Potato", "10Kg", "Rs. 100/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3, "Ladyfinger", "10Kg", "Rs. 300/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4, "Tomato", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5, "Shimla Mirch", "10Kg", "Rs. 500/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6, "Chilli", "10Kg", "Rs. 400/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1, "Carrot", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_, "Potato", "10Kg", "Rs. 100/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3, "Ladyfinger", "10Kg", "Rs. 300/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4, "Tomato", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5, "Shimla Mirch", "10Kg", "Rs. 500/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6, "Chilli", "10Kg", "Rs. 400/-"));
-
-            GridProductAdapter gridProductAdapter = new GridProductAdapter(horizontalProductScrollModelList_todays);
-            gridView.setAdapter(gridProductAdapter);
         }
-
-
     }
 
     @Override
