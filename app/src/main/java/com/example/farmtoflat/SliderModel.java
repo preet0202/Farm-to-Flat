@@ -2,19 +2,19 @@ package com.example.farmtoflat;
 
 public class SliderModel {
 
-    private int Banner;
+    private String Banner;
     private String backgound_color;
 
-    public SliderModel(int banner, String backgound_color) {
+    public SliderModel(String banner, String backgound_color) {
         Banner = banner;
         this.backgound_color = backgound_color;
     }
 
-    public int getBanner() {
+    public String getBanner() {
         return Banner;
     }
 
-    public void setBanner(int banner) {
+    public void setBanner(String banner) {
         Banner = banner;
     }
 

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +36,10 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter mCategoryAdapter;
-    private   RecyclerView testing;
+    private   RecyclerView homePageRecyclerView;
+    private List<CategoryModel> categoryModelList;
+    private FirebaseFirestore firebaseFirestore;
+    private HomePageAdapter adapter;
 
 
 
@@ -41,81 +51,94 @@ public class HomeFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         categoryRecyclerView.setLayoutManager(layoutManager);
 
-        List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-
-        categoryModelList.add(new CategoryModel("link","Home"));
-        categoryModelList.add(new CategoryModel("link","Price Comparision"));
-        categoryModelList.add(new CategoryModel("link","Offer"));
-        categoryModelList.add(new CategoryModel("link","Order Now"));
-        categoryModelList.add(new CategoryModel("link","Subscription"));
-        categoryModelList.add(new CategoryModel("link","More"));
+        categoryModelList = new ArrayList<CategoryModel>();
 
         mCategoryAdapter = new CategoryAdapter(categoryModelList);
         categoryRecyclerView.setAdapter(mCategoryAdapter);
+
+        firebaseFirestore = FirebaseFirestore.getInstance();
+        firebaseFirestore.collection("categories").orderBy("index").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
+                                categoryModelList.add(new CategoryModel(documentSnapshot.get("icon").toString(),documentSnapshot.get("categoryName").toString()));
+                            }
+                        }else{
+                            String error = task.getException().getMessage();
+                            Toast.makeText(getContext() , error , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
         mCategoryAdapter.notifyDataSetChanged();
 
         ///// Banner Slider
-        List <SliderModel> mSliderModelList = new ArrayList<SliderModel>();
-        mSliderModelList.add(new SliderModel(R.drawable.photo1,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo2,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo3,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo4,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo5,"#077AE4"));
-        mSliderModelList.add(new SliderModel(R.drawable.photo6,"#077AE4"));
         //// Banner Slider
 
         /////Special offer pager
 
         List<SliderModel> mSpecialOfferModelList = new ArrayList<SliderModel>();
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer5,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer6,"#077AE4"));
-
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer1,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer2,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer3,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer4,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer5,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer6,"#077AE4"));
-
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer1,"#077AE4"));
-        mSpecialOfferModelList.add(new SliderModel(R.drawable.specialoffer2,"#077AE4"));
+//
 
         /////Special offer pager
 
         ///Horizontal product 1
         List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays = new ArrayList<>();
 
-        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1,"Carrot","10Kg","Rs. 200/-"));
-        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_,"Potato","10Kg","Rs. 100/-"));
-        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3,"Ladyfinger","10Kg","Rs. 300/-"));
-        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4,"Tomato","10Kg","Rs. 200/-"));
-        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5,"Shimla Mirch","10Kg","Rs. 500/-"));
-        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6,"Chilli","10Kg","Rs. 400/-"));
+//        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1,"Carrot","10Kg","Rs. 200/-"));
+//        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_,"Potato","10Kg","Rs. 100/-"));
+//        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3,"Ladyfinger","10Kg","Rs. 300/-"));
+//        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4,"Tomato","10Kg","Rs. 200/-"));
+//        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5,"Shimla Mirch","10Kg","Rs. 500/-"));
+//        horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6,"Chilli","10Kg","Rs. 400/-"));
         ///Horizontal product 1
 
         ////lucky Coupon
 
         List<LuckyCouponModel> luckyCouponModelList = new ArrayList<>();
-        luckyCouponModelList.add(new LuckyCouponModel("Lucky Coupon"));
+      //  luckyCouponModelList.add(new LuckyCouponModel("Lucky Coupon"));
         ////lucky Coupon
 
-        ///////////////////////////////////////////
-        testing  = view.findViewById(R.id.home_page_recyclerView);
+        homePageRecyclerView  = view.findViewById(R.id.home_page_recyclerView);
         LinearLayoutManager testingLayoutManager = new LinearLayoutManager(getContext());
         testingLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        testing.setLayoutManager(testingLayoutManager);
+        homePageRecyclerView.setLayoutManager(testingLayoutManager);
+        final List<HomePageModel> homePageModelList = new ArrayList<>();
+        adapter = new HomePageAdapter(homePageModelList);
+        homePageRecyclerView.setAdapter(adapter);
 
-        List<HomePageModel> homePageModelList = new ArrayList<>();
-        homePageModelList.add(new HomePageModel(0,mSliderModelList));
-        homePageModelList.add(new HomePageModel(2,"Today's Deal",horizontalProductScrollModelList_todays));
-        homePageModelList.add(new HomePageModel(3,"New Arrival",horizontalProductScrollModelList_todays));
-        homePageModelList.add(new HomePageModel(1,mSpecialOfferModelList));
-        homePageModelList.add(new HomePageModel(4,luckyCouponModelList,"Lucky Coupon"));
-        homePageModelList.add(new HomePageModel(5));
+        firebaseFirestore.collection("top_deals").orderBy("index").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()){
 
-        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
-        testing.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+                                if((long)documentSnapshot.get("view_type") == 0){
+                                    List<SliderModel> sliderModelList = new ArrayList<SliderModel>();
+                                    long  no_of_banners = (long)documentSnapshot.get("no_of_banners");
+                                    for(long  x=1 ;x < no_of_banners+1 ; x++){
+                                        sliderModelList.add(new SliderModel(documentSnapshot.get("banner_"+x).toString()
+                                                ,documentSnapshot.get("banner_"+x+"_background").toString()));
+                                    }
+                                    //homePageModelList.add(new HomePageModel(0,sliderModelList));
+                                }else if((long)documentSnapshot.get("view_type") == 1){
+
+                                }else if((long)documentSnapshot.get("view_type") == 2){
+
+                                }else if((long)documentSnapshot.get("view_type") == 3){
+
+                                }
+
+                            }
+                            adapter.notifyDataSetChanged();;
+                        }else{
+                            String error = task.getException().getMessage();
+                            Toast.makeText(getContext() , error , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
         //ViewCompat.setNestedScrollingEnabled(testing, false);
         //////////////////////////////////////////
 
