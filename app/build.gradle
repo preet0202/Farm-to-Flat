@@ -51,10 +51,9 @@ dependencies {
         mavenCentral()
         google()
     }
+    implementation 'com.squareup.picasso:picasso:2.71828'
    // implemention 'com.github.bumptech.glide:compiler:4.11.0-SNAPSHOT'
    // implementation 'com.github.bumptech.glide:annotations:4.11.0-SNAPSHOT'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    //implementation 'com.github.bumptech.glide:annotation:4.0.0-SNAPSHOT'
-    // implementation 'androidx.cardview:cardview:1.0.0'
 }

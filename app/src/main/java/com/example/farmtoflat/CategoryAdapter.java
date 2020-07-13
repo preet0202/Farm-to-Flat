@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-//import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         String icon = mCategoryModel.get(position).getCategoryLink();
         String name = mCategoryModel.get(position).getCategoryName();
-        Log.d(TAG, "Loadig image" +icon+ " "+ name);
+        //Log.d(TAG, "Loadig image" +icon+ " "+ name);
         viewHolder.setCategory(name);
         viewHolder.setCategoryIcon(icon);
     }
@@ -71,11 +71,14 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public void setCategoryIcon(String iconUrl) {
             if (!(iconUrl.equals("null"))) {
                 try {
-                    Glide.with(itemView.getContext()).load(iconUrl).into(categoryIcon);
+                   // Glide.with(itemView.getContext()).load(iconUrl).into(categoryIcon);
+                    Glide.with(itemView.getContext()).load(iconUrl).apply(new RequestOptions().placeholder(R.mipmap.baseline_home_black_18dp)).into(categoryIcon);
+                    //Picasso.get().load(iconUrl).error(R.mipmap.baseline_home_black_18dp).into(categoryIcon);
+
                 }catch(Exception e){
                     Log.d(TAG, "setCategory: "+ e);
                 }
-                //Picasso.get().load(iconUrl).error(R.mipmap.baseline_home_black_18dp).into(categoryIcon);
+
             }
         }
 

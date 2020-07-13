@@ -8,6 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.List;
 
 public class GridProductAdapter extends BaseAdapter {
@@ -49,7 +52,8 @@ public class GridProductAdapter extends BaseAdapter {
             productWeight = itemView.findViewById(R.id.horizontal_scroll_layout1_product_weight);
             productPrice = itemView.findViewById(R.id.horizontal_scroll_layout1_product_price);
 
-            productImage.setImageResource(mHorizontalProductScrollModel_todayList.get(position).getProductImage());
+            //productImage.setImageResource(mHorizontalProductScrollModel_todayList.get(position).getProductImage());
+            Glide.with(itemView.getContext()).load(mHorizontalProductScrollModel_todayList.get(position).getProductImage()).apply(new RequestOptions().placeholder(R.mipmap.baseline_home_black_18dp)).into(productImage);
             productTitle.setText(mHorizontalProductScrollModel_todayList.get(position).getProductTitle());
             productWeight.setText(mHorizontalProductScrollModel_todayList.get(position).getProductWeight());
             productPrice.setText(mHorizontalProductScrollModel_todayList.get(position).getProductPrice());

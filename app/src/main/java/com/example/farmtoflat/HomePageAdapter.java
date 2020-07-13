@@ -23,6 +23,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.Slide;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -407,7 +410,8 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                  productWeight = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_weight);
                  productPrice = gridProductLayout.getChildAt(x).findViewById(R.id.horizontal_scroll_layout1_product_price);
 
-                productImage.setImageResource(horizontalProductScrollModelList_todays.get(x).getProductImage());
+                //productImage.setImageResource(horizontalProductScrollModelList_todays.get(x).getProductImage());
+                Glide.with(itemView.getContext()).load(horizontalProductScrollModelList_todays.get(x).getProductImage()).apply(new RequestOptions().placeholder(R.mipmap.baseline_home_black_18dp)).into(productImage);
                 productTitle.setText(horizontalProductScrollModelList_todays.get(x).getProductTitle());
                 productWeight.setText(horizontalProductScrollModelList_todays.get(x).getProductWeight());
                 productPrice.setText(horizontalProductScrollModelList_todays.get(x).getProductPrice());

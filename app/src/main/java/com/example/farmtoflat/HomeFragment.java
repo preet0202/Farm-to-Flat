@@ -108,7 +108,10 @@ public class HomeFragment extends Fragment {
         adapter = new HomePageAdapter(homePageModelList);
         homePageRecyclerView.setAdapter(adapter);
 
-        firebaseFirestore.collection("top_deals").orderBy("index").get()
+        firebaseFirestore.collection("categories")
+                .document("Home")
+                .collection("top_deals")
+                .orderBy("index").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -122,9 +125,19 @@ public class HomeFragment extends Fragment {
                                         sliderModelList.add(new SliderModel(documentSnapshot.get("banner_"+x).toString()
                                                 ,documentSnapshot.get("banner_"+x+"_background").toString()));
                                     }
-                                    //homePageModelList.add(new HomePageModel(0,sliderModelList));
+                                    homePageModelList.add(new HomePageModel(0,sliderModelList));
                                 }else if((long)documentSnapshot.get("view_type") == 1){
-
+                                    List<HorizontalProductScrollModel_today> horizontalProductScrollModelTodayList = new ArrayList<>();
+                                    long  no_of_products = (long)documentSnapshot.get("no_of_products");
+                                    for(long  x=1 ;x < no_of_products+1 ; x++){
+                                        horizontalProductScrollModelTodayList.add(new HorizontalProductScrollModel_today(documentSnapshot.get("product_ID_"+x).toString()
+                                                ,documentSnapshot.get("product_image_"+x).toString()
+                                                ,documentSnapshot.get("product_title_"+x).toString()
+                                                ,documentSnapshot.get("product_subtitle_"+x).toString()
+                                                ,documentSnapshot.get("product_price_"+x).toString()
+                                        ));
+                                    }
+                                    homePageModelList.add(new HomePageModel(2,documentSnapshot.get("layout_title").toString(),horizontalProductScrollModelTodayList));
                                 }else if((long)documentSnapshot.get("view_type") == 2){
 
                                 }else if((long)documentSnapshot.get("view_type") == 3){

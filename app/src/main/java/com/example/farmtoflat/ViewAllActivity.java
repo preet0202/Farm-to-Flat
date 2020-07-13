@@ -50,18 +50,7 @@ public class ViewAllActivity extends AppCompatActivity {
 
             List<HorizontalProductScrollModel_today> horizontalProductScrollModelList_todays = new ArrayList<>();
 
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1, "Carrot", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_, "Potato", "10Kg", "Rs. 100/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3, "Ladyfinger", "10Kg", "Rs. 300/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4, "Tomato", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5, "Shimla Mirch", "10Kg", "Rs. 500/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6, "Chilli", "10Kg", "Rs. 400/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg1, "Carrot", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg2_, "Potato", "10Kg", "Rs. 100/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg3, "Ladyfinger", "10Kg", "Rs. 300/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg4, "Tomato", "10Kg", "Rs. 200/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg5, "Shimla Mirch", "10Kg", "Rs. 500/-"));
-            horizontalProductScrollModelList_todays.add(new HorizontalProductScrollModel_today(R.drawable.veg6, "Chilli", "10Kg", "Rs. 400/-"));
+
 
             GridProductAdapter gridProductAdapter = new GridProductAdapter(horizontalProductScrollModelList_todays);
             gridView.setAdapter(gridProductAdapter);
